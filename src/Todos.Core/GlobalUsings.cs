@@ -6,4 +6,6 @@ global using System.Linq;
 global using System.Linq.Expressions;
 global using System.Threading.Tasks;
 global using Todos.Core.Abstractions;
+global using Todos.Core.Features.Todo;
+global using Todos.Core.Features.User;
 global using OneOf;

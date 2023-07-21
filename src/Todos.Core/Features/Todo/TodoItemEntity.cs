@@ -1,6 +1,6 @@
 namespace Todos.Core.Features.Todo;
 
-public sealed class FindByIdTodoItemQuery
+public sealed class FindByIdTodoItemQuery : IRequest<TodoItemEntity>
 {
     public required Guid Id { get; init; }
 }

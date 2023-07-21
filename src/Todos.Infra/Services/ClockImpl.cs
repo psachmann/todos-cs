@@ -1,6 +1,6 @@
 namespace Todos.Infra.Services;
 
-internal sealed class ClockImpl : IClock, ISingletonMarker
+internal sealed class ClockImpl : IClock, ISingleton
 {
     public DateTimeOffset CurrentUtc => DateTimeOffset.UtcNow;
 

@@ -2,6 +2,8 @@ namespace Todos.Core.Specifications;
 
 public abstract class SpecificationBase<T> : ISpecification<T>
 {
+    public abstract Expression<Func<T, bool>> Criteria { get; }
+
     public abstract bool IsSatisfied(T candidate);
 
     public ISpecification<T> Not()

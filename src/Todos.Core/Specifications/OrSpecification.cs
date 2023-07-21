@@ -11,6 +11,16 @@ public class OrSpecification<T> : SpecificationBase<T>
         _right = right;
     }
 
+    public override Expression<Func<T, bool>> Criteria
+    {
+        get
+        {
+            var param = _left.Criteria.Parameters.First();
+            var or = Expression.OrElse(_left.Criteria.Body, _right.Criteria.Body);
+            return Expression.Lambda<Func<T, bool>>(or, param);
+        }
+    }
+
     public override bool IsSatisfied(T candidate)
     {
         return _left.IsSatisfied(candidate) || _right.IsSatisfied(candidate);

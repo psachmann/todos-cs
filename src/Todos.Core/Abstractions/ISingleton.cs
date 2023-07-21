@@ -1,3 +1,3 @@
 namespace Todos.Core.Abstractions;
 
-public interface IScopedMarker { }
+public interface ISingleton { }

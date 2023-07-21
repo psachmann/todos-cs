@@ -2,7 +2,7 @@ namespace Todos.Core.Abstractions;
 
 public interface ISpecification<T>
 {
-    public Expression<Func<T, bool>> Expression { get; }
+    public Expression<Func<T, bool>> Criteria { get; }
 
     public bool IsSatisfied(T candidate);
 
