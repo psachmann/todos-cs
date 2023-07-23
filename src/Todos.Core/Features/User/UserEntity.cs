@@ -10,6 +10,8 @@ public sealed record class UserEntity : IEntity
 
     public required string Email { get; init; }
 
+    public required string EmailNormalized { get; init; }
+
     public required string PasswordHash { get; init; }
 
     public required string PasswordSalt { get; init; }

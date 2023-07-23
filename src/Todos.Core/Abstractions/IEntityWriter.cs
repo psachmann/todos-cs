@@ -1,5 +1,3 @@
-using System.Threading;
-
 namespace Todos.Core.Abstractions;
 
 public interface IEntityWriter<TEntity>

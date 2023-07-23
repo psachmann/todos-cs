@@ -13,6 +13,6 @@ internal sealed class TodosContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        builder.ApplyConfigurationsFromAssembly(AssemblyInfo.Assembly);
+        builder.ApplyConfigurationsFromAssembly(LibTodosInfra.Assembly);
     }
 }

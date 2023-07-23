@@ -1,11 +1,15 @@
 global using AutoMapper;
 global using MediatR;
 global using System;
+global using FluentValidation;
 global using System.Collections.Generic;
 global using System.Linq;
 global using System.Linq.Expressions;
+global using System.Reflection;
+global using System.Threading;
 global using System.Threading.Tasks;
 global using Todos.Core.Abstractions;
 global using Todos.Core.Features.Todo;
 global using Todos.Core.Features.User;
 global using OneOf;
+global using static Todos.Core.Constants;

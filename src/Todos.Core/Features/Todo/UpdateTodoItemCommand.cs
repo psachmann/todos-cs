@@ -1,6 +1,6 @@
 namespace Todos.Core.Features.Todo;
 
-public sealed class UpdateTodoItemCommand : IRequest<Unit>
+public sealed record class UpdateTodoItemCommand : IRequest<Unit>
 {
     public string Title { get; init; } = string.Empty;
 

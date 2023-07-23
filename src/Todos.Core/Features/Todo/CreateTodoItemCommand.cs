@@ -1,6 +1,6 @@
 namespace Todos.Core.Features.Todo;
 
-public sealed class CreateTodoItemCommand : IRequest<Guid>
+public sealed record class CreateTodoItemCommand : IRequest<Guid>
 {
     public string Title { get; init; } = string.Empty;
 
