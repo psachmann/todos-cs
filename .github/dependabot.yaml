@@ -1,15 +1,26 @@
 version: 2
+
 updates:
-  - package-ecosystem: "nuget"
-    directory: "/"
-    open-pull-requests-limit: 10
-    rebase-strategy: "auto"
+  - package-ecosystem: nuget
+    directory: /
+    open-pull-requests-limit: 5
+    rebase-strategy: auto
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "12:00"
-      timezone: "Europe/Berlin"
+      day: monday
+      interval: weekly
+      timezone: Europe/Berlin
     labels:
-      - "deps"
+      - dependencies
     assignees:
-      - "psachmann"
+      - psachmann
+
+  - package-ecosystem: github-actions
+    directory: /
+    open-pull-requests-limit: 5
+    schedule:
+      interval: monthly
+      timezone: Europe/Berlin
+    labels:
+      - dependencies
+    assignees:
+      - psachmann

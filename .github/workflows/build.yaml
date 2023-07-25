@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dotnet
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.x
+
+      - name: Build
+        run: dotnet build
+
+      - name: Test
+        run: dotnet test --no-restore --no-build
