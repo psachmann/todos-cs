@@ -1,10 +1,12 @@
 namespace Todos.Core.Features.Todo;
 
-public sealed record class UpdateTodoItemCommand : IRequest<Unit>
+public sealed record class UpdateTodoItemCommand : IRequest
 {
-    public string Title { get; init; } = string.Empty;
+    public required Guid Id { get; init; }
 
-    public string Description { get; init; } = string.Empty;
+    public string? Title { get; init; }
 
-    public bool Done { get; init; }
+    public string? Description { get; init; }
+
+    public bool? Done { get; init; }
 }

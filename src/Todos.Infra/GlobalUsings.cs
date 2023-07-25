@@ -1,3 +1,4 @@
+global using AutoMapper;
 global using FluentValidation;
 global using MediatR;
 global using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ global using System.Threading;
 global using System.Threading.Tasks;
 global using Todos.Core;
 global using Todos.Core.Abstractions;
+global using Todos.Core.Exceptions;
 global using Todos.Core.Features.Todo;
 global using Todos.Core.Features.User;
 global using static Todos.Core.Constants;
