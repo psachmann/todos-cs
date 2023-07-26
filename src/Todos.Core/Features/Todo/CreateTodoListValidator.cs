@@ -1,6 +1,6 @@
 namespace Todos.Core.Features.Todo;
 
-public sealed class CreateTodoListValidator : AbstractValidator<CreateTodoItemCommand>
+public sealed class CreateTodoListValidator : AbstractValidator<CreateTodoListCommand>
 {
     public static readonly int MaxTitleLength = 100;
 

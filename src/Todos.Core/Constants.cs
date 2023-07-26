@@ -4,7 +4,7 @@ public static class Constants
 {
     public static class Limits
     {
-        public static readonly int MaxShortString = 100;
-        public static readonly int MaxLongString = 1_000;
+        public const int MaxShortString = 100;
+        public const int MaxLongString = 1_000;
     }
 }

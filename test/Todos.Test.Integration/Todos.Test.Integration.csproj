@@ -9,12 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="6.11.0" />
-    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
-    <PackageReference Include="OneOf" Version="3.0.255" />
     <PackageReference Include="Testcontainers" Version="3.3.0" />
     <PackageReference Include="xunit" Version="2.5.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.0">
@@ -28,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Todos.Core\Todos.Core.csproj" />
     <ProjectReference Include="..\..\src\Todos.Infra\Todos.Infra.csproj" />
   </ItemGroup>
 
