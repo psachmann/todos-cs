@@ -1,11 +1,17 @@
+global using AutoBogus;
+global using AutoMapper;
 global using FluentAssertions;
+global using Moq;
 global using System;
 global using System.Collections.Generic;
 global using System.Linq;
 global using System.Threading;
 global using System.Threading.Tasks;
+global using Todos.Core.Abstractions;
 global using Todos.Core.Features.Todo;
 global using Todos.Core.Features.User;
 global using Todos.Core.Specifications;
+global using Todos.Infra.Handlers;
+global using Todos.Test.Unit.Utils;
 global using Xunit;
 global using static Todos.Core.Constants;

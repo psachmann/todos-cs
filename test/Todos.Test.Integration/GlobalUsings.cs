@@ -8,5 +8,6 @@ global using System.Collections.Generic;
 global using System.Threading;
 global using System.Threading.Tasks;
 global using Todos.Infra.Extensions;
+global using Todos.Test.Integration.Fixtures;
 global using OneOf;
 global using Xunit;

@@ -1,4 +1,5 @@
 using Todos.Infra.Extensions;
+using Todos.Infra.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
