@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todos.Test.Unit", "test\Tod
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todos.Test.Integration", "test\Todos.Test.Integration\Todos.Test.Integration.csproj", "{7A02811A-AA23-4E00-9B11-CC3B91058984}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "build\Build.csproj", "{6765431A-7557-45F6-B7A8-FD2BE4333E6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6765431A-7557-45F6-B7A8-FD2BE4333E6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6765431A-7557-45F6-B7A8-FD2BE4333E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1A1DBE3-6C59-42DE-BD3D-A8F3AF7E1659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E1A1DBE3-6C59-42DE-BD3D-A8F3AF7E1659}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1A1DBE3-6C59-42DE-BD3D-A8F3AF7E1659}.Release|Any CPU.ActiveCfg = Release|Any CPU
