@@ -3,29 +3,29 @@ namespace Todos.Test.Unit.Infra.Handlers;
 public class CreateTodoItemHandlerTest
 {
     private readonly CreateTodoItemHandler _sut;
-    private readonly Mock<IEntityWriter<TodoItemEntity>> _writerMock;
-    private readonly Mock<IMapper> _mapperMock;
+    private readonly IEntityWriter<TodoItemEntity> _writerMock;
+    private readonly IMapper _mapperMock;
 
     public CreateTodoItemHandlerTest()
     {
-        _writerMock = new Mock<IEntityWriter<TodoItemEntity>>();
-        _mapperMock = new Mock<IMapper>();
-        _sut = new CreateTodoItemHandler(_writerMock.Object, _mapperMock.Object);
+        _writerMock = Substitute.For<IEntityWriter<TodoItemEntity>>();
+        _mapperMock = Substitute.For<IMapper>();
+        _sut = new CreateTodoItemHandler(_writerMock, _mapperMock);
     }
 
     [Fact]
     public async Task Handle_ShouldCreateNewTodoItem()
     {
         var command = new CreateTodoItemCommand();
-        _mapperMock.Setup((mapper) => mapper.Map<TodoItemEntity>(It.IsAny<CreateTodoItemCommand>()))
+        _mapperMock.Map<TodoItemEntity>(Arg.Any<CreateTodoItemCommand>())
             .Returns(new TodoItemFaker().Generate());
-        _writerMock.Setup((writer) => writer.CreateOneAsync(It.IsAny<TodoItemEntity>(), It.IsAny<CancellationToken>()))
-            .ReturnsAsync(new TodoItemFaker(true).Generate().Id);
+        _writerMock.CreateOneAsync(Arg.Any<TodoItemEntity>(), Arg.Any<CancellationToken>())
+            .Returns(Task.FromResult(new TodoItemFaker(true).Generate().Id));
 
         var result = await _sut.Handle(command, default);
 
         result.Should().NotBeEmpty();
-        _mapperMock.Verify((mapper) => mapper.Map<TodoItemEntity>(It.IsAny<CreateTodoItemCommand>()), Times.Once);
-        _writerMock.Verify((writer) => writer.CreateOneAsync(It.IsAny<TodoItemEntity>(), It.IsAny<CancellationToken>()), Times.Once);
+        _mapperMock.ReceivedWithAnyArgs().Map<TodoItemEntity>(default);
+        await _writerMock.ReceivedWithAnyArgs().CreateOneAsync(default!, default);
     }
 }
