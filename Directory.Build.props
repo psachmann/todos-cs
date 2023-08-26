@@ -1,6 +1,9 @@
 <Project>
   <!-- See https://aka.ms/dotnet/msbuild/customize for more details on customizing your build -->
   <PropertyGroup>
+  </PropertyGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions.Analyzers" Version="0.21.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -20,5 +23,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="xunit.analyzers" Version="1.2.0" />
-  </PropertyGroup>
+  </ItemGroup>
+
 </Project>

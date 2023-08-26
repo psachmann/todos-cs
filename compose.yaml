@@ -2,7 +2,7 @@ version: "3"
 
 services:
   postgres:
-    image: bitnami/postgresql:latest
+    image: docker.io/postgres:15.3-alpine
     ports:
       - 5432:5432
     environment:
