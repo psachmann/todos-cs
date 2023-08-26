@@ -13,6 +13,6 @@ public class TodoItemFaker : AutoFaker<TodoItemEntity>
 
         RuleFor((fake) => fake.Title, () => AutoFaker.Generate<string>());
         RuleFor((fake) => fake.Description, () => AutoFaker.Generate<string>());
-        RuleFor((fake) => fake.Done, () => AutoFaker.Generate<bool>());
+        RuleFor((fake) => fake.IsDone, () => AutoFaker.Generate<bool>());
     }
 }

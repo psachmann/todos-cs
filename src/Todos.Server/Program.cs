@@ -1,12 +1,23 @@
 using Todos.Infra.Extensions;
-using Todos.Infra.Options;
+using Todos.Server.GraphQL.Types;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace Todos.Server;
 
-builder.Services.AddTodosInfra(builder.Configuration);
+public class Program
+{
+    public static async Task Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-var app = builder.Build();
+        builder.Services.AddTodosInfra(builder.Configuration)
+            .AddGraphQLServer()
+            .AddQueryType<QueryType>()
+            .AddMutationType<MutationType>();
 
-app.MapGet("/", () => "Hello World!");
+        var app = builder.Build();
 
-app.Run();
+        app.MapGet("/", () => "Hello World!");
+        app.MapGraphQL();
+        await app.RunAsync();
+    }
+}

@@ -18,7 +18,7 @@ internal sealed class TodoItemConfiguration : ConfigurationBase<TodoItemEntity>
             .IsRequired()
             .HasMaxLength(CreateTodoItemValidator.MaxDescriptionLength);
 
-        builder.Property(todoItem => todoItem.Done)
+        builder.Property(todoItem => todoItem.IsDone)
             .IsRequired();
     }
 }

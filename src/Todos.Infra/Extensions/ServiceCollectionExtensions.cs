@@ -24,7 +24,8 @@ public static class ServiceCollectionExtensions
         => services
             .AddDbContext<TodosContext>(builder =>
             {
-                builder.UseNpgsql(configuration.GetConnectionString("postgres"));
+                builder.UseInMemoryDatabase("TodosContext");
+                // builder.UseNpgsql(configuration.GetConnectionString("postgres"));
             });
 
 

@@ -1,6 +1,6 @@
 namespace Todos.Infra.Handlers;
 
-internal sealed class DeleteTodoItemHandler : IRequestHandler<DeleteTodoItemCommand>
+internal sealed class DeleteTodoItemHandler : IRequestHandler<DeleteTodoItemCommand, Guid>
 {
     private readonly IEntityReader<TodoItemEntity> _reader;
     private readonly IEntityWriter<TodoItemEntity> _writer;
@@ -11,17 +11,19 @@ internal sealed class DeleteTodoItemHandler : IRequestHandler<DeleteTodoItemComm
         _writer = writer;
     }
 
-    public async Task Handle(DeleteTodoItemCommand command, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(DeleteTodoItemCommand command, CancellationToken cancellationToken)
     {
         var result = await _reader.FindByIdAsync(command.Id, cancellationToken);
 
-        if (result.TryPickT0(out var todoItem, out var _))
+        if (result.TryPickT1(out var _, out var todoItem))
         {
-            await _writer.DeleteOneAsync(todoItem, cancellationToken);
+            throw new NotFoundException(typeof(TodoItemEntity), command.Id);
         }
         else
         {
-            throw new NotFoundException(typeof(TodoItemEntity), command.Id);
+            await _writer.DeleteOneAsync(todoItem, cancellationToken);
+
+            return todoItem.Id;
         }
     }
 }

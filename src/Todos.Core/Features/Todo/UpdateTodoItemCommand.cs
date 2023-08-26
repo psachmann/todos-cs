@@ -1,6 +1,6 @@
 namespace Todos.Core.Features.Todo;
 
-public sealed record class UpdateTodoItemCommand : IRequest
+public sealed record class UpdateTodoItemCommand : IRequest<Guid>
 {
     public required Guid Id { get; init; }
 
