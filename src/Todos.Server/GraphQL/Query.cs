@@ -4,15 +4,30 @@ namespace Todos.Server.GraphQL;
 
 public class Query
 {
-    public async Task<IEnumerable<TodoItemEntity>> GetAllTodoItemsAsync([Service] IEntityReader<TodoItemEntity> reader, CancellationToken cancellationToken)
-    {
-        var result = await reader.FindManyAsync(new FindAllSpecification<TodoItemEntity>(), cancellationToken);
-        return result.AsT0;
-    }
 
-    public Task<TodoItemEntity> GetTodoItemAsync(FindTodoItemByIdQuery query, [Service] IMediator mediator, CancellationToken cancellationToken)
-        => mediator.Send(query, cancellationToken);
+    public TodoItemEntity GetTodoItem()
+        => new()
+        {
+            Id = Guid.NewGuid(),
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now,
+            Title = $"Title #{1}",
+            Description = $"Description #{1}",
+        };
 
-    public Task<TodoListEntity> GetTodoListAsync(FindTodoListByIdQuery query, [Service] IMediator mediator, CancellationToken cancellationToken)
-        => mediator.Send(query, cancellationToken);
+    public IEnumerable<TodoItemEntity> TodoItems()
+        => Enumerable.Range(0, 10).Select((i) => new TodoItemEntity
+        {
+            Id = Guid.NewGuid(),
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now,
+            Title = $"Title #{i}",
+            Description = $"Description #{i}",
+        });
+
+    // public Task<TodoItemEntity> GetTodoItemByIdAsync(FindTodoItemByIdQuery query, [Service] IMediator mediator, CancellationToken cancellationToken)
+    //     => mediator.Send(query, cancellationToken);
+
+    // public Task<TodoListEntity> GetTodoListAsync(FindTodoListByIdQuery query, [Service] IMediator mediator, CancellationToken cancellationToken)
+    //     => mediator.Send(query, cancellationToken);
 }

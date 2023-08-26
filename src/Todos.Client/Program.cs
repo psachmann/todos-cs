@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Todos.Client.Data;
+using Todos.Client.GraphQL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddTodosClient()
+    .ConfigureHttpClient((client) => client.BaseAddress = new Uri("http://127.0.0.1:5218/graphql"));
 
 var app = builder.Build();
 

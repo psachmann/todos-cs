@@ -4,6 +4,7 @@
   "extensions": {
     "strawberryShake": {
       "name": "TodosClient",
+      "namespace": "Todos.Client.GraphQL",
       "url": "http://127.0.0.1:5218/graphql",
       "records": {
         "inputs": false,
