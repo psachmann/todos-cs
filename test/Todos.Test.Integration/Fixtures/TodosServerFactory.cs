@@ -1,4 +1,3 @@
-using DotNet.Testcontainers.Containers;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Todos.Server;
 using Testcontainers.PostgreSql;
