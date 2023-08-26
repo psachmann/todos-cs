@@ -24,3 +24,4 @@ global using static Todos.Core.Constants;
 
 using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Todos.Test.Unit")]
+[assembly: InternalsVisibleTo("Todos.Test.Integration")]

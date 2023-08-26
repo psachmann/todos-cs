@@ -1,31 +1,31 @@
-using DotNet.Testcontainers.Builders;
 using DotNet.Testcontainers.Containers;
+using Testcontainers.PostgreSql;
 
 namespace Todos.Test.Integration.Fixtures;
 
 public sealed class DatabaseFixture : IAsyncLifetime
 {
-    private readonly IContainer database;
+    private readonly PostgreSqlContainer _database;
 
     public DatabaseFixture()
     {
-        database = new ContainerBuilder()
-            .WithImage("docker.io/postgres:15.3-alpine")
-            .WithPortBinding(5432)
-            .WithEnvironment("POSTGRE_USERNAME", "admin")
-            .WithEnvironment("POSTGRE_PASSWORD", "password")
-            .WithEnvironment("POSTGRE_DB", "todos")
-            .WithCleanUp(true)
+        _database = new PostgreSqlBuilder()
+            .WithImage("postgres:15.3-alpine")
+            .WithDatabase("todos")
+            .WithUsername("admin")
+            .WithPassword("password")
             .Build();
     }
 
+    public string ConnectionString => _database.GetConnectionString();
+
     public async Task InitializeAsync()
     {
-        await database.StartAsync();
+        await _database.StartAsync();
     }
 
     public async Task DisposeAsync()
     {
-        await database.StopAsync();
+        await _database.StopAsync();
     }
 }
