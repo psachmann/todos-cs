@@ -10,8 +10,10 @@ public class EntityWriterImplTest : IClassFixture<TodosServerFactory>, IAsyncLif
 
     public EntityWriterImplTest(TodosServerFactory factory)
     {
-        _sut = factory.Services.GetRequiredService<IEntityWriter<TodoItemEntity>>();
-        _context = factory.Services.GetRequiredService<TodosContext>();
+        var provider = factory.Services.CreateScope().ServiceProvider;
+
+        _sut = provider.GetRequiredService<IEntityWriter<TodoItemEntity>>();
+        _context = provider.GetRequiredService<TodosContext>();
     }
 
     public async Task InitializeAsync()
@@ -28,9 +30,11 @@ public class EntityWriterImplTest : IClassFixture<TodosServerFactory>, IAsyncLif
     public async Task CreateOneAsync_ReturnsGeneratedId_WhenEntityWasCreated()
     {
         var faker = new TodoItemFaker();
-        var todoItem = faker.Generate();
+        var todoItem = faker.Generate(TodoItemFaker.RuleSetNotPersisted);
 
+        Console.WriteLine(todoItem);
         todoItem.Id.Should().Be(Guid.Empty);
+
 
         var result = await _sut.CreateOneAsync(todoItem);
 

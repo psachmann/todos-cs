@@ -2,17 +2,18 @@ namespace Todos.Test.Unit.Utils;
 
 public class TodoItemFaker : AutoFaker<TodoItemEntity>
 {
-    public TodoItemFaker(bool wasPersisted = false)
-    {
-        if (wasPersisted)
-        {
-            RuleFor((fake) => fake.Id, () => AutoFaker.Generate<Guid>());
-            RuleFor((fake) => fake.CreatedAt, () => AutoFaker.Generate<DateTimeOffset>());
-            RuleFor((fake) => fake.UpdatedAt, () => AutoFaker.Generate<DateTimeOffset>());
-        }
+    public const string RuleSetPersisted = "Persisted";
+    public const string RuleSetNotPersisted = "NotPersisted";
 
-        RuleFor((fake) => fake.Title, () => AutoFaker.Generate<string>());
-        RuleFor((fake) => fake.Description, () => AutoFaker.Generate<string>());
-        RuleFor((fake) => fake.IsDone, () => AutoFaker.Generate<bool>());
+    public TodoItemFaker()
+    {
+        RuleSet(RuleSetPersisted, (rules) => { });
+
+        RuleSet(RuleSetNotPersisted, (rules) =>
+        {
+            RuleFor((fake) => fake.Id, () => Guid.Empty);
+            RuleFor((fake) => fake.CreatedAt, () => DateTime.Now);
+            RuleFor((fake) => fake.UpdatedAt, () => DateTime.Now);
+        });
     }
 }

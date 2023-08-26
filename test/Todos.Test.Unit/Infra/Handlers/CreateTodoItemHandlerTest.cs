@@ -20,7 +20,7 @@ public class CreateTodoItemHandlerTest
         _mapperMock.Map<TodoItemEntity>(Arg.Any<CreateTodoItemCommand>())
             .Returns(new TodoItemFaker().Generate());
         _writerMock.CreateOneAsync(Arg.Any<TodoItemEntity>(), Arg.Any<CancellationToken>())
-            .Returns(Task.FromResult(new TodoItemFaker(true).Generate().Id));
+            .Returns(Task.FromResult(new TodoItemFaker().Generate().Id));
 
         var result = await _sut.Handle(command, default);
 
