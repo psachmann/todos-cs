@@ -7,6 +7,12 @@
       "commands": [
         "nuke"
       ]
+    },
+    "strawberryshake.tools": {
+      "version": "13.5.1",
+      "commands": [
+        "dotnet-graphql"
+      ]
     }
   }
 }
