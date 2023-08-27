@@ -1,34 +1,33 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
-using Testcontainers.PostgreSql;
+using Testcontainers.MariaDb;
 using Todos.Server;
 
 namespace Todos.Test.Integration.Fixtures;
 
 public sealed class TodosServerFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
-    private readonly PostgreSqlContainer _postgres;
+    private readonly MariaDbContainer _mariaDb;
 
     public TodosServerFactory()
     {
-        _postgres = new PostgreSqlBuilder()
-            .WithImage("postgres:15.3-alpine")
+        _mariaDb = new MariaDbBuilder()
+            .WithImage("mariadb:11.0")
             .WithDatabase("todos")
             .WithUsername("admin")
             .WithPassword("password")
             .Build();
     }
 
-
     public async Task InitializeAsync()
     {
-        await _postgres.StartAsync();
+        await _mariaDb.StartAsync();
     }
 
     public async new Task DisposeAsync()
     {
-        await _postgres.StopAsync();
+        await _mariaDb.StopAsync();
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -38,7 +37,7 @@ public sealed class TodosServerFactory : WebApplicationFactory<Program>, IAsyncL
             services
                 .AddTodosClient()
                 // TODO: remove hardcoded base uri
-                .ConfigureHttpClient((client) => client.BaseAddress = new Uri("http://127.0.0.1:5218/graphql"));
+                .ConfigureHttpClient((client) => client.BaseAddress = new Uri($"{Server.BaseAddress}/graphql"));
 
             OverrideDatabaseConfiguration(services);
         });
@@ -49,9 +48,9 @@ public sealed class TodosServerFactory : WebApplicationFactory<Program>, IAsyncL
         services.RemoveAll<DatabaseOptions>();
         services.AddSingleton<DatabaseOptions>((_) => new()
         {
-            Connection = _postgres.GetConnectionString(),
+            Connection = _mariaDb.GetConnectionString(),
             // TODO: remove this hard coded value
-            Version = "15.3",
+            Version = "11.0",
         });
     }
 }

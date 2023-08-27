@@ -1,3 +1,5 @@
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+
 namespace Todos.Infra.Data;
 
 internal sealed class TodosContext : DbContext
@@ -16,10 +18,7 @@ internal sealed class TodosContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(_options.Connection, (optionsBuilder) =>
-        {
-            optionsBuilder.SetPostgresVersion(new Version(_options.Version));
-        });
+        optionsBuilder.UseMySql(_options.Connection, new MySqlServerVersion(_options.Version));
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
