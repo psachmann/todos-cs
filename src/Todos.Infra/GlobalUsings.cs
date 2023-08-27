@@ -19,6 +19,7 @@ global using Todos.Core.Abstractions;
 global using Todos.Core.Exceptions;
 global using Todos.Core.Features.Todo;
 global using Todos.Core.Features.User;
+global using Todos.Infra.Data;
 global using Todos.Infra.Options;
 global using static Todos.Core.Constants;
 

@@ -2,14 +2,25 @@ namespace Todos.Infra.Data;
 
 internal sealed class TodosContext : DbContext
 {
-    public TodosContext(DbContextOptions<TodosContext> options)
-        : base(options)
+    private readonly DatabaseOptions _options;
+
+
+    public TodosContext(DatabaseOptions options)
     {
+        _options = options;
     }
 
     public TodoItemEntity? TodoItems { get; init; }
 
     public TodoListEntity? TodoLists { get; init; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql(_options.Connection, (optionsBuilder) =>
+        {
+            optionsBuilder.SetPostgresVersion(new Version(_options.Version));
+        });
+    }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

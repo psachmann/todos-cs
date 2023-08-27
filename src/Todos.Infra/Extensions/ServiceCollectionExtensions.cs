@@ -1,5 +1,4 @@
 using Todos.Infra.Behaviors;
-using Todos.Infra.Data;
 
 namespace Todos.Infra.Extensions;
 
@@ -22,12 +21,7 @@ public static class ServiceCollectionExtensions
 
     private static IServiceCollection AddTodosContext(this IServiceCollection services, IConfiguration configuration)
         => services
-            .AddDbContext<TodosContext>(builder =>
-            {
-                builder.UseInMemoryDatabase("TodosContext");
-                // builder.UseNpgsql(configuration.GetConnectionString("postgres"));
-            });
-
+            .AddDbContext<TodosContext>();
 
     private static IServiceCollection AddTodosServices(this IServiceCollection services)
         => services

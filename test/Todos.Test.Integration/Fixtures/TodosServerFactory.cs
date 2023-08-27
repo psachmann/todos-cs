@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc.Testing;
-using Todos.Server;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.TestHost;
 using Testcontainers.PostgreSql;
+using Todos.Server;
 
-namespace Todos.Test.Integration;
+namespace Todos.Test.Integration.Fixtures;
 
 public sealed class TodosServerFactory : WebApplicationFactory<Program>, IAsyncLifetime
 {
@@ -29,6 +31,27 @@ public sealed class TodosServerFactory : WebApplicationFactory<Program>, IAsyncL
         await _postgres.StopAsync();
     }
 
-    // TODO: configure the web host and other services
-    // protected override void ConfigureWebHost
+    protected override void ConfigureWebHost(IWebHostBuilder builder)
+    {
+        builder.ConfigureTestServices((services) =>
+        {
+            services
+                .AddTodosClient()
+                // TODO: remove hardcoded base uri
+                .ConfigureHttpClient((client) => client.BaseAddress = new Uri("http://127.0.0.1:5218/graphql"));
+
+            OverrideDatabaseConfiguration(services);
+        });
+    }
+
+    private void OverrideDatabaseConfiguration(IServiceCollection services)
+    {
+        services.RemoveAll<DatabaseOptions>();
+        services.AddSingleton<DatabaseOptions>((_) => new()
+        {
+            Connection = _postgres.GetConnectionString(),
+            // TODO: remove this hard coded value
+            Version = "15.3",
+        });
+    }
 }

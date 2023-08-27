@@ -1,0 +1,53 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  todoItem: TodoItem
+  todoItems: [TodoItem]
+}
+
+type Mutation {
+  createTodoItem(command: CreateTodoItemCommandInput!): UUID!
+  updateTodoItem(command: UpdateTodoItemCommandInput!): UUID!
+  deleteTodoItem(command: DeleteTodoItemCommandInput!): UUID!
+}
+
+"The representation of a todo item."
+type TodoItem {
+  "The id of the todo item."
+  id: UUID!
+  "The creation date of the todo item."
+  createdAt: DateTime!
+  "The last updated date of the todo item."
+  updatedAt: DateTime!
+  "The title of the todo item.\nCan be an empty string."
+  title: String!
+  "The description of the todo item.\nCan be an empty string."
+  description: String!
+  "Indicates whether the todo item is done or not.\nDefault value is false."
+  isDone: Boolean!
+}
+
+scalar UUID
+
+input CreateTodoItemCommandInput {
+  title: String!
+  description: String!
+  done: Boolean!
+}
+
+input UpdateTodoItemCommandInput {
+  id: UUID!
+  title: String
+  description: String
+  done: Boolean
+}
+
+input DeleteTodoItemCommandInput {
+  id: UUID!
+}
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime
