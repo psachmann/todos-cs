@@ -3,18 +3,19 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Testcontainers.MariaDb;
 using Todos.Server;
-using HotChocolate;
 
 namespace Todos.Test.Integration.Fixtures;
 
-public sealed class TodosServerFactory : WebApplicationFactory<Program>, IAsyncLifetime
+public sealed class TodosServerFixture : WebApplicationFactory<Program>, IAsyncLifetime
 {
+    // TODO: remove this hard coded value
+    private const string MariaDbVersion = "11.0";
     private readonly MariaDbContainer _mariaDb;
 
-    public TodosServerFactory()
+    public TodosServerFixture()
     {
         _mariaDb = new MariaDbBuilder()
-            .WithImage("mariadb:11.0")
+            .WithImage($"mariadb:{MariaDbVersion}")
             .WithDatabase("todos")
             .WithUsername("admin")
             .WithPassword("password")
@@ -36,6 +37,7 @@ public sealed class TodosServerFactory : WebApplicationFactory<Program>, IAsyncL
         builder.ConfigureTestServices((services) =>
         {
             OverrideDatabaseConfiguration(services);
+            OverrideGraphQLConfiguration(services);
         });
     }
 
@@ -45,8 +47,12 @@ public sealed class TodosServerFactory : WebApplicationFactory<Program>, IAsyncL
         services.AddSingleton<DatabaseOptions>((_) => new()
         {
             Connection = _mariaDb.GetConnectionString(),
-            // TODO: remove this hard coded value
-            Version = "11.0",
+            Version = MariaDbVersion,
         });
+    }
+
+    private void OverrideGraphQLConfiguration(IServiceCollection services)
+    {
+        services.AddSingleton<RequestExecutorProxy>((services) => new(services.GetRequiredService<IRequestExecutorResolver>(), Schema.DefaultName));
     }
 }

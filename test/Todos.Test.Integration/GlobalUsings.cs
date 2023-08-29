@@ -15,6 +15,7 @@ global using Todos.Infra.Data;
 global using Todos.Infra.Extensions;
 global using Todos.Infra.Options;
 global using Todos.Server.GraphQL.Types;
+global using Todos.Test.Integration.Extensions;
 global using Todos.Test.Integration.Fixtures;
 global using Todos.Test.Unit.Utils;
 global using OneOf;

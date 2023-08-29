@@ -3,12 +3,12 @@ using Todos.Core.Features.Todo;
 
 namespace Todos.Test.Integration.Infra.Data;
 
-public class EntityWriterImplTest : IClassFixture<TodosServerFactory>, IAsyncLifetime
+public class EntityWriterImplTest : IClassFixture<TodosServerFixture>, IAsyncLifetime
 {
     private readonly IEntityWriter<TodoItemEntity> _sut;
     private readonly TodosContext _context;
 
-    public EntityWriterImplTest(TodosServerFactory factory)
+    public EntityWriterImplTest(TodosServerFixture factory)
     {
         var provider = factory.Services.CreateScope().ServiceProvider;
 
@@ -34,7 +34,6 @@ public class EntityWriterImplTest : IClassFixture<TodosServerFactory>, IAsyncLif
 
         Console.WriteLine(todoItem);
         todoItem.Id.Should().Be(Guid.Empty);
-
 
         var result = await _sut.CreateOneAsync(todoItem);
 
