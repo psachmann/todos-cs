@@ -1,17 +1,10 @@
 ﻿schema {
   query: Query
-  mutation: Mutation
 }
 
 type Query {
   todoItem: TodoItem
   todoItems: [TodoItem]
-}
-
-type Mutation {
-  createTodoItem(command: CreateTodoItemCommandInput!): UUID!
-  updateTodoItem(command: UpdateTodoItemCommandInput!): UUID!
-  deleteTodoItem(command: DeleteTodoItemCommandInput!): UUID!
 }
 
 "The representation of a todo item."
@@ -30,24 +23,10 @@ type TodoItem {
   isDone: Boolean!
 }
 
-scalar UUID
-
-input CreateTodoItemCommandInput {
-  title: String!
-  description: String!
-  done: Boolean!
-}
-
-input UpdateTodoItemCommandInput {
-  id: UUID!
-  title: String
-  description: String
-  done: Boolean
-}
-
-input DeleteTodoItemCommandInput {
-  id: UUID!
-}
+"The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
+directive @specifiedBy("The specifiedBy URL points to a human-readable specification. This field will only read a result for scalar types." url: String!) on SCALAR
 
 "The `DateTime` scalar represents an ISO-8601 compliant date time type."
-scalar DateTime
+scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")
+
+scalar UUID @specifiedBy(url: "https:\/\/tools.ietf.org\/html\/rfc4122")

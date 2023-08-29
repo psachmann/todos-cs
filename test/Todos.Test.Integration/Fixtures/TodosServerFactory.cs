@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Testcontainers.MariaDb;
 using Todos.Server;
+using HotChocolate;
 
 namespace Todos.Test.Integration.Fixtures;
 
@@ -34,11 +35,6 @@ public sealed class TodosServerFactory : WebApplicationFactory<Program>, IAsyncL
     {
         builder.ConfigureTestServices((services) =>
         {
-            services
-                .AddTodosClient()
-                // TODO: remove hardcoded base uri
-                .ConfigureHttpClient((client) => client.BaseAddress = new Uri($"{Server.BaseAddress}/graphql"));
-
             OverrideDatabaseConfiguration(services);
         });
     }
