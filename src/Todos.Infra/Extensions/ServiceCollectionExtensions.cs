@@ -17,7 +17,8 @@ public static class ServiceCollectionExtensions
             })
             .AddValidatorsFromAssemblies(AssembliesToScan)
             .AddTodosContext(configuration)
-            .AddTodosServices();
+            .AddTodosServices()
+            .AddTodosOptions(configuration);
 
     private static IServiceCollection AddTodosContext(this IServiceCollection services, IConfiguration configuration)
         => services
@@ -36,6 +37,12 @@ public static class ServiceCollectionExtensions
                 .AddClasses(classes => classes.AssignableTo<ISingleton>())
                     .AsImplementedInterfaces()
                     .WithSingletonLifetime());
+
+    private static IServiceCollection AddTodosOptions(this IServiceCollection services, IConfiguration configuration)
+        => services
+            .AddOptions<DatabaseOptions>()
+            .Bind(configuration.GetSection(DatabaseOptions.SectionName))
+            .Services;
 }
 
 

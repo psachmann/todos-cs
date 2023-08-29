@@ -13,7 +13,7 @@ public sealed class QueryType : ObjectType<Query>
         // descriptor.Field((query) => query.GetTodoItemByIdAsync(default!, default!, default))
         //     .Type<TodoItemType>();
 
-        // descriptor.Field((query) => query.GetTodoListAsync(default!, default!, default))
-        //     .Type<TodoListType>();
+        descriptor.Field((query) => query.GetTodoListAsync(default!, default!, default))
+            .Type<TodoListType>();
     }
 }

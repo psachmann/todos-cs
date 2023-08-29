@@ -1,11 +1,12 @@
 version: "3"
 
 services:
-  postgres:
-    image: docker.io/postgres:15.3-alpine
+  mariadb:
+    image: docker.io/mariadb:11.0
+    restart: always
     ports:
-      - 5432:5432
+      - 3306:3306
     environment:
-      - POSTGRESQL_USERNAME=admin
-      - POSTGRESQL_PASSWORD=password
-      - POSTGRESQL_DATABASE=todos
+      - MARIADB_DATABASE=todos
+      - MARIADB_USER=admin
+      - MARIADB_PASSWORD=password

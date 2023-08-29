@@ -10,6 +10,7 @@ public class SchemaTest
             .AddQueryType<QueryType>()
             .BuildSchemaAsync();
 
+        schema.Should().NotBeNull();
         schema.ToString().MatchSnapshot();
     }
 }

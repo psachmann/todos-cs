@@ -1,5 +1,6 @@
 using Todos.Infra.Extensions;
 using Todos.Server.GraphQL.Types;
+using Todos.Server.Middlewares;
 
 namespace Todos.Server;
 
@@ -10,11 +11,15 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         builder.Services.AddTodosInfra(builder.Configuration)
+            .AddLogging()
+            .AddTransient<GlobalExceptionMiddleware>()
             .AddGraphQLServer()
             .AddQueryType<QueryType>()
             .AddMutationType<MutationType>();
 
         var app = builder.Build();
+
+        app.UseMiddleware<GlobalExceptionMiddleware>();
 
         app.MapGet("/", () => "Hello World!");
         app.MapGraphQL();

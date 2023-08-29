@@ -1,0 +1,16 @@
+﻿{
+  "errors": [
+    {
+      "message": "Invalid number, expected digit but got: \u0060f\u0060 (102).",
+      "locations": [
+        {
+          "line": 2,
+          "column": 31
+        }
+      ],
+      "extensions": {
+        "code": "HC0014"
+      }
+    }
+  ]
+}

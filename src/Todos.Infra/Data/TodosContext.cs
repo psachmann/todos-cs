@@ -4,10 +4,10 @@ namespace Todos.Infra.Data;
 
 internal sealed class TodosContext : DbContext
 {
-    private readonly DatabaseOptions _options;
+    private readonly IOptions<DatabaseOptions> _options;
 
 
-    public TodosContext(DatabaseOptions options)
+    public TodosContext(IOptions<DatabaseOptions> options)
     {
         _options = options;
     }
@@ -18,7 +18,7 @@ internal sealed class TodosContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseMySql(_options.Connection, new MySqlServerVersion(_options.Version));
+        optionsBuilder.UseMySql(_options.Value.Connection, new MySqlServerVersion(_options.Value.Version));
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

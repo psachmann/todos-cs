@@ -28,6 +28,6 @@ public class Query
     // public Task<TodoItemEntity> GetTodoItemByIdAsync(FindTodoItemByIdQuery query, [Service] IMediator mediator, CancellationToken cancellationToken)
     //     => mediator.Send(query, cancellationToken);
 
-    // public Task<TodoListEntity> GetTodoListAsync(FindTodoListByIdQuery query, [Service] IMediator mediator, CancellationToken cancellationToken)
-    //     => mediator.Send(query, cancellationToken);
+    public Task<TodoListEntity> GetTodoListAsync(FindTodoListByIdQuery query, [Service] IMediator mediator, CancellationToken cancellationToken)
+        => mediator.Send(query, cancellationToken);
 }

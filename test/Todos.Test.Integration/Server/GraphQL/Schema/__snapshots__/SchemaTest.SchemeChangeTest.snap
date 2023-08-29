@@ -5,6 +5,7 @@
 type Query {
   todoItem: TodoItem
   todoItems: [TodoItem]
+  todoList(query: FindTodoListByIdQueryInput!): TodoList
 }
 
 "The representation of a todo item."
@@ -21,6 +22,24 @@ type TodoItem {
   description: String!
   "Indicates whether the todo item is done or not.\nDefault value is false."
   isDone: Boolean!
+}
+
+"The representation of a collection of todo items."
+type TodoList {
+  "The id of the todo list."
+  id: UUID!
+  "The creation date of the todo list."
+  createdAt: DateTime!
+  "The last updated date of the todo list."
+  updatedAt: DateTime!
+  "The title of the todo list."
+  title: String!
+  "The todo items associated with the todo list."
+  items: [TodoItem!]
+}
+
+input FindTodoListByIdQueryInput {
+  id: UUID!
 }
 
 "The `@specifiedBy` directive is used within the type system definition language to provide a URL for specifying the behavior of custom scalar definitions."
