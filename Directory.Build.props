@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions.Analyzers" Version="0.21.0">
+    <PackageReference Include="FluentAssertions.Analyzers" Version="0.25.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Analyzers" Version="7.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Analyzers" Version="7.0.11" />
     <!-- <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="7.0.4">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
@@ -19,7 +19,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.7.0.75501">
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="9.11.0.78383">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
