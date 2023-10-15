@@ -17,6 +17,7 @@
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.10" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.10" />
+    <PackageVersion Include="Microsoft.Fast.Components.FluentUI" Version="3.2.0" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
     <PackageVersion Include="OneOf" Version="3.0.263" />
     <PackageVersion Include="Scrutor" Version="4.2.2" />
