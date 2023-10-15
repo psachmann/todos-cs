@@ -2,15 +2,13 @@
 
 <PageTitle>Todos</PageTitle>
 
-<h1>Todos</h1>
-
 @foreach (var todo in Todos)
 {
-    <FluentCard>
-        <label>@todo.Title</label>
-        <FluentSpacer />
-        <p>@todo.Description</p>
-        <FluentSpacer />
-        <FluentCheckbox @bind-Value=todo.Done></FluentCheckbox>
-    </FluentCard>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@todo.Title</h5>
+            <p class="card-text">@todo.Description</p>
+            <input checked=@todo.Done class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        </div>
+    </div>
 }
