@@ -1,20 +1,12 @@
 namespace Todos.Infra.Handlers;
 
-internal sealed class CreateTodoItemHandler : IRequestHandler<CreateTodoItemCommand, Guid>
+internal sealed class CreateTodoItemHandler(IEntityWriter<TodoItemEntity> writer, IMapper mapper)
+     : IRequestHandler<CreateTodoItemCommand, Guid>
 {
-    private readonly IEntityWriter<TodoItemEntity> _writer;
-    private readonly IMapper _mapper;
-
-    public CreateTodoItemHandler(IEntityWriter<TodoItemEntity> writer, IMapper mapper)
-    {
-        _writer = writer;
-        _mapper = mapper;
-    }
-
     public async Task<Guid> Handle(CreateTodoItemCommand command, CancellationToken cancellationToken)
     {
-        var todoItem = _mapper.Map<TodoItemEntity>(command);
-        var todoItemId = await _writer.CreateOneAsync(todoItem, cancellationToken);
+        var todoItem = mapper.Map<TodoItemEntity>(command);
+        var todoItemId = await writer.CreateOneAsync(todoItem, cancellationToken);
 
         return todoItemId;
     }

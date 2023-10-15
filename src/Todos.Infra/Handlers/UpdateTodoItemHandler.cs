@@ -1,19 +1,11 @@
 namespace Todos.Infra.Handlers;
 
-internal sealed class UpdateTodoItemHandler : IRequestHandler<UpdateTodoItemCommand, Guid>
+internal sealed class UpdateTodoItemHandler(IEntityReader<TodoItemEntity> reader, IEntityWriter<TodoItemEntity> writer)
+    : IRequestHandler<UpdateTodoItemCommand, Guid>
 {
-    private readonly IEntityReader<TodoItemEntity> _reader;
-    private readonly IEntityWriter<TodoItemEntity> _writer;
-
-    public UpdateTodoItemHandler(IEntityReader<TodoItemEntity> reader, IEntityWriter<TodoItemEntity> writer)
-    {
-        _reader = reader;
-        _writer = writer;
-    }
-
     public async Task<Guid> Handle(UpdateTodoItemCommand command, CancellationToken cancellationToken)
     {
-        var result = await _reader.FindByIdAsync(command.Id, cancellationToken);
+        var result = await reader.FindByIdAsync(command.Id, cancellationToken);
 
         if (result.TryPickT1(out var _, out var todoItem))
         {
@@ -28,7 +20,7 @@ internal sealed class UpdateTodoItemHandler : IRequestHandler<UpdateTodoItemComm
                 IsDone = command.Done ?? todoItem.IsDone,
             };
 
-            await _writer.UpdateOneAsync(todoItem, cancellationToken);
+            await writer.UpdateOneAsync(todoItem, cancellationToken);
 
             return todoItem.Id;
         }
