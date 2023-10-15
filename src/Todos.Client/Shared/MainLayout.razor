@@ -1,22 +1,23 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>Todos.Client</PageTitle>
+<FluentLayout>
+    <FluentHeader>
+        <h1>Header</h1>
+    </FluentHeader>
 
-<h1>Hello World!</h1>
+    <FluentGrid Spacing="3" Justify="JustifyContent.FlexStart" style="margin-left: 1rem; margin-right: 1rem;">
+        <FluentGridItem style="border-style: dotted;" xs="3">
+            <Sidebar />
+        </FluentGridItem>
 
+        <FluentGridItem style="border-style: dotted;" xs=9>
+            <FluentBodyComponent style="margin-left: 2rem; margin-right: 2rem;">
+                @Body
+            </FluentBodyComponent>
+        </FluentGridItem>
+    </FluentGrid>
 
-@* <div class="page">
-<div class="sidebar">
-<NavMenu />
-</div>
-
-<main>
-<div class="top-row px-4">
-<a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-</div>
-
-<article class="content px-4">
-@Body
-</article>
-</main>
-</div> *@
+    <FluentFooter style="text-align: center;">
+        <h3>Footer</h3>
+    </FluentFooter>
+</FluentLayout>
