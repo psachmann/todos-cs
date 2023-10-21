@@ -1,0 +1,11 @@
+name: todos-services
+
+services:
+  - name: db
+    image: postgres
+
+  - name: web-api
+    project: src/Todos.Server/Todos.Server.csproj
+
+  - name: web-app
+    project: src/Todos.Client/Todos.Client.csproj
