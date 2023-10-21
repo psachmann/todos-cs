@@ -4,7 +4,7 @@ public class DatabaseOptions
 {
     public const string SectionName = "Database";
 
-    public required string Uri { get; init; }
+    public required string Host { get; init; }
 
     public required string Database { get; init; }
 
@@ -12,5 +12,5 @@ public class DatabaseOptions
 
     public required string Password { get; init; }
 
-    public string Connection => $"Host={Uri};Database={Database};Username={Username};Password={Password};";
+    public string Connection => $"Host={Host};Database={Database};Username={Username};Password={Password};";
 }

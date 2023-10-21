@@ -3,7 +3,7 @@ using Todos.Infra.Data;
 
 namespace Todos.Infra.Extensions;
 
-public static class ServiceCollectionExtensions
+public static class ServiceCollectionTodosExtensions
 {
     private static readonly Assembly[] AssembliesToScan = new[] { LibTodosCore.Assembly, LibTodosInfra.Assembly };
 
@@ -17,6 +17,7 @@ public static class ServiceCollectionExtensions
                 config.AddOpenBehavior(typeof(ValidationBehavior<,>));
             })
             .AddValidatorsFromAssemblies(AssembliesToScan)
+            .AddTodosOptions(configuration)
             .AddTodosContext(configuration)
             .AddTodosServices();
 
@@ -42,6 +43,14 @@ public static class ServiceCollectionExtensions
                 .AddClasses(classes => classes.AssignableTo<ISingleton>())
                     .AsImplementedInterfaces()
                     .WithSingletonLifetime());
+
+    public static IServiceCollection AddTodosOptions(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddOptions<DatabaseOptions>()
+            .Bind(configuration.GetSection(DatabaseOptions.SectionName))
+            .ValidateFluently()
+            .ValidateOnStart();
+
+        return services;
+    }
 }
-
-
