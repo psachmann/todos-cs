@@ -1,39 +1,31 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="contianer">
-    <div class="row">
-        <div class="col">
-            <header style="text-align: center; border-style: dotted;">
-                <h1>Header</h1>
-            </header>
-        </div>
+<div class="container-fluid">
+    <div class="row p-2 text-bg-primary">
+        <Header />
     </div>
 
-    <div class="row">
-        <div class="col-3" style="border-style: dotted;">
-            <nav class="list-group">
-                <NavLink href="/counter" class="list-group-item list-group-item-action">
-                    <h6>Counter</h6>
-                </NavLink>
+    <div class="row p-2">
+        @* <div class="col-3" style="border-style: dotted;">
+        <nav class="list-group">
+        <NavLink href="/counter" class="list-group-item list-group-item-action">
+        <h6>Counter</h6>
+        </NavLink>
 
-                <NavLink href="/todos" class="list-group-item list-group-item-action">
-                    <h6>Todos</h6>
-                </NavLink>
-            </nav>
-        </div>
+        <NavLink href="/todos" class="list-group-item list-group-item-action">
+        <h6>Todos</h6>
+        </NavLink>
+        </nav>
+        </div> *@
 
-        <div class="col-9" style="border-style: dotted;">
-            <main class="container">
+        <div class="col" style="border-style: dotted;">
+            <main class="container-fluid">
                 @Body
             </main>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
-            <footer style="text-align: center; border-style: dotted;">
-                <h3>Footer</h3>
-            </footer>
-        </div>
+    <div class="row p-2">
+        <Footer />
     </div>
 </div>

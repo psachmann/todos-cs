@@ -1,14 +1,48 @@
-@page "/todos"
+@page "/"
 
 <PageTitle>Todos</PageTitle>
 
-@foreach (var todo in Todos)
-{
-    <div class="card">
+<div class="container">
+    @foreach (var todo in Todos)
+    {
+        <div class="card m-1">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col text-start">
+                        <h6 class="card-title">@todo.Title</h6>
+                    </div>
+
+                    <div class="col text-start">
+                        <p class="card-text">@todo.Description</p>
+                    </div>
+
+                    <div class="col text-end">
+                        <input checked=@todo.Done class="col form-check-input" type="checkbox" name="flexRadioDefault"
+                            id="flexRadioDefault1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="card m-1">
         <div class="card-body">
-            <h5 class="card-title">@todo.Title</h5>
-            <p class="card-text">@todo.Description</p>
-            <input checked=@todo.Done class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <div class="row">
+                <div class="col-11 text-start">
+                    <div class="input-group">
+                        <span class="input-group-text">Title</span>
+                        <input @bind="TitleInput" type="text" class="form-control" aria-label="Username">
+                        <span class="input-group-text">Description</span>
+                        <input @bind="DescriptionInput" type="text" class="form-control" aria-label="Server">
+                    </div>
+                </div>
+
+                <div class="col col-1 text-end">
+                    <button type="button" class="btn btn-primary" @onclick="AddTodoItem">
+                        <i class="bi bi-plus-circle" style="font-size: 1rem;"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-}
+</div>

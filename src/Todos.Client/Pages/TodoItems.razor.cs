@@ -16,15 +16,24 @@ public sealed partial class TodoItems
         public bool Done { get; set; }
     };
 
-    List<TodoItem> Todos { get; } = new()
-    {
-        new TodoItem("Item 1", "The first todo item", false),
-        new TodoItem("Item 2", "The second todo item", false),
-        new TodoItem("Item 3", "The third todo item", false),
-    };
+    private string TitleInput { get; set; } = string.Empty;
 
-    void AddTodoItem(string title, string descrition, bool done)
+    private string DescriptionInput { get; set; } = string.Empty;
+
+    private List<TodoItem> Todos { get; } = new();
+
+    private void AddTodoItem()
     {
-        Todos.Add(new(title, descrition, done));
+        if (TitleInput != string.Empty && DescriptionInput != string.Empty)
+        {
+            Todos.Add(new(TitleInput, DescriptionInput, false));
+            ResetInput();
+        }
+    }
+
+    private void ResetInput()
+    {
+        TitleInput = string.Empty;
+        DescriptionInput = string.Empty;
     }
 }
