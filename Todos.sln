@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todos.Test.Integration", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Todos.Client", "src\Todos.Client\Todos.Client.csproj", "{16B02718-6A54-40D7-8870-BF04E3C95F4E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "build\Build.csproj", "{C9AB568B-5C69-4E42-8FA8-89E2E03D1008}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B1655A9D-4E0B-4F42-87FE-C1F1A04518EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1655A9D-4E0B-4F42-87FE-C1F1A04518EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9AB568B-5C69-4E42-8FA8-89E2E03D1008}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9AB568B-5C69-4E42-8FA8-89E2E03D1008}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1A1DBE3-6C59-42DE-BD3D-A8F3AF7E1659}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E1A1DBE3-6C59-42DE-BD3D-A8F3AF7E1659}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1A1DBE3-6C59-42DE-BD3D-A8F3AF7E1659}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="HotChocolate.AspNetCore" />
-    <PackageReference Include="Microsoft.NET.Build.Containers" />
   </ItemGroup>
 
   <ItemGroup>

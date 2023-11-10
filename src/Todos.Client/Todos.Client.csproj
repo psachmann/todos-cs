@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Fast.Components.FluentUI" />
-    <PackageReference Include="Microsoft.NET.Build.Containers" />
     <PackageReference Include="StrawberryShake.Blazor" />
   </ItemGroup>
 

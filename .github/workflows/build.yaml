@@ -22,8 +22,11 @@ jobs:
         with:
           dotnet-version: 7.x
 
+      - name: Restore dotnet tools
+        run: dotnet tool restore
+
       - name: Build
-        run: dotnet build
+        run: dotnet nuke build
 
       - name: Test
-        run: dotnet test --no-restore --no-build
+        run: dotnet nuke test
