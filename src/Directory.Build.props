@@ -3,6 +3,8 @@
 
   <PropertyGroup>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
     <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 

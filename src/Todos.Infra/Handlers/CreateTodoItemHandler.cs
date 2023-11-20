@@ -1,4 +1,4 @@
-namespace Todos.Infra.Handlers;
+namespace Todos.App.Todos;
 
 internal sealed class CreateTodoItemHandler(IEntityWriter<TodoItemEntity> writer, IMapper mapper)
      : IRequestHandler<CreateTodoItemCommand, Guid>
